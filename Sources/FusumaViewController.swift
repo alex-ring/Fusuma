@@ -196,11 +196,13 @@ public struct ImageMetadata {
             videoButton.tintColor = fusumaTintColor
             videoButton.adjustsImageWhenHighlighted = false
             
+            closeButton.setTitle(nil, for: UIControlState())
             closeButton.setImage(closeImage, for: UIControlState())
             closeButton.setImage(closeImage, for: .highlighted)
             closeButton.setImage(closeImage, for: .selected)
             closeButton.tintColor = fusumaTintColor
             
+            doneButton.setTitle(nil, for: UIControlState())
             doneButton.setImage(checkImage, for: UIControlState())
             doneButton.setImage(checkImage, for: .highlighted)
             doneButton.setImage(checkImage, for: .selected)
@@ -216,6 +218,8 @@ public struct ImageMetadata {
             
             closeButton.setImage(closeImage, for: UIControlState())
             doneButton.setImage(checkImage, for: UIControlState())
+            closeButton.setTitle(nil, for: UIControlState())
+            doneButton.setTitle(nil, for: UIControlState())
         }
         
         photoLibraryViewerContainer.addSubview(albumView)
