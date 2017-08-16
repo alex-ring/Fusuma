@@ -511,12 +511,14 @@ private extension FusumaViewController {
             
         case .library:
             
+            doneButton.isHidden = false
             titleLabel.text = NSLocalizedString(fusumaCameraRollTitle, comment: fusumaCameraRollTitle)
             highlightButton(libraryButton)
             self.view.bringSubview(toFront: photoLibraryViewerContainer)
         
         case .camera:
-
+            
+            doneButton.isHidden = true
             titleLabel.text = NSLocalizedString(fusumaCameraTitle, comment: fusumaCameraTitle)
             highlightButton(cameraButton)
             self.view.bringSubview(toFront: cameraShotContainer)
@@ -524,13 +526,14 @@ private extension FusumaViewController {
             
         case .video:
             
+            doneButton.isHidden = true
             titleLabel.text = fusumaVideoTitle
             highlightButton(videoButton)
             self.view.bringSubview(toFront: videoShotContainer)
             videoView.startCamera()
             
         default:
-            
+            doneButton.isHidden = false
             break
         }
         
