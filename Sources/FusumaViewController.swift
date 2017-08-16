@@ -155,15 +155,19 @@ public struct ImageMetadata {
         videoView.delegate  = self
         
         if let album = fusumaAlbumImage {
+            libraryButton.setTitle(nil, for: .normal)
             libraryButton.setImage(album, for: .normal)
         }else{
+            libraryButton.setImage(nil, for: .normal)
             libraryButton.setTitle(fusumaCameraRollTitle, for: .normal)
         }
         
         if let camera = fusumaCameraImage {
-            libraryButton.setImage(camera, for: .normal)
+            cameraButton.setTitle(nil, for: .normal)
+            cameraButton.setImage(camera, for: .normal)
         }else{
-            libraryButton.setTitle(fusumaCameraTitle, for: .normal)
+            cameraButton.setImage(nil, for: .normal)
+            cameraButton.setTitle(fusumaCameraTitle, for: .normal)
         }
         
         videoButton.setTitle(fusumaVideoTitle, for: .normal)
