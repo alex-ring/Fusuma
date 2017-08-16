@@ -64,6 +64,9 @@ public var fusumaFlashOffImage: UIImage?
 public var fusumaFlipImage: UIImage?
 public var fusumaShotImage: UIImage?
 
+public var fusumaAlbumImage: UIImage?
+public var fusumaCameraImage: UIImage?
+
 public var fusumaVideoStartImage: UIImage?
 public var fusumaVideoStopImage: UIImage?
 
@@ -151,8 +154,18 @@ public struct ImageMetadata {
         albumView.delegate  = self
         videoView.delegate  = self
         
-        libraryButton.setTitle(fusumaCameraRollTitle, for: .normal)
-        cameraButton.setTitle(fusumaCameraTitle, for: .normal)
+        if let album = fusumaAlbumImage {
+            libraryButton.setImage(album, for: .normal)
+        }else{
+            libraryButton.setTitle(fusumaCameraRollTitle, for: .normal)
+        }
+        
+        if let camera = fusumaCameraImage {
+            libraryButton.setImage(camera, for: .normal)
+        }else{
+            libraryButton.setTitle(fusumaCameraTitle, for: .normal)
+        }
+        
         videoButton.setTitle(fusumaVideoTitle, for: .normal)
 
         menuView.backgroundColor = fusumaBackgroundColor
