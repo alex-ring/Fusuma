@@ -173,7 +173,6 @@ public struct ImageMetadata {
         videoButton.setTitle(fusumaVideoTitle, for: .normal)
 
         menuView.backgroundColor = fusumaBackgroundColor
-        menuView.addBottomBorder(UIColor.black, width: 1.0)
 
         albumView.allowMultipleSelection = allowMultipleSelection
         
@@ -244,6 +243,11 @@ public struct ImageMetadata {
             ))
         }
         
+        setupCrop()
+        
+    }
+    
+    func setupCrop()  {
         if fusumaCropImage {
             
             let heightRatio = getCropHeightRatio()
@@ -256,15 +260,25 @@ public struct ImageMetadata {
                 attribute: NSLayoutAttribute.width,
                 multiplier: heightRatio,
                 constant: 0)
-            cameraView.fullAspectRatioConstraint.isActive     = false
+            cameraView.fullAspectRatioConstraint?.isActive    = false
             cameraView.croppedAspectRatioConstraint?.isActive = true
             
         } else {
             
-            cameraView.fullAspectRatioConstraint.isActive     = true
+            cameraView.fullAspectRatioConstraint?.isActive     = true
             cameraView.croppedAspectRatioConstraint?.isActive = false
         }
-        
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        if UIDevice.current.orientation.isLandscape {
+//            cropHeightRatio = 480/600
+//        } else {
+//            cropHeightRatio = 600/480
+//        }
+//        
+        let indexPath = albumView.selectedIndex ?? IndexPath(row:0, section:0)
+        albumView.collectionView(albumView.collectionView, didSelectItemAt: indexPath)
     }
     
     override public func viewWillAppear(_ animated: Bool) {

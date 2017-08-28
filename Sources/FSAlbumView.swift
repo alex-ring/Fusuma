@@ -19,6 +19,8 @@ import Photos
 
 final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIGestureRecognizerDelegate {
     
+    var selectedIndex : IndexPath?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageCropView: FSImageCropView!
     @IBOutlet weak var imageCropViewContainer: UIView!
@@ -300,7 +302,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        selectedIndex = indexPath
         changeImage(images[(indexPath as NSIndexPath).row])
         
         imageCropView.changeScrollable(true)
@@ -314,7 +316,11 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
                        animations: {
                         
                         self.layoutIfNeeded()
-        }, completion: nil)
+        }, completion: { [weak self] success in
+            guard let strong = self else { return }
+            strong.collectionViewConstraintHeight.constant = strong.frame.height - strong.imageCropViewContainer.frame.height - strong.imageCropViewOriginalConstraintTop
+            strong.layoutIfNeeded()
+        })
         
         dragDirection = Direction.up
         collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
@@ -334,8 +340,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         return true
     }
-    
-    
+
     // MARK: - ScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         

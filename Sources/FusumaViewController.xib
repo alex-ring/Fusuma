@@ -81,6 +81,13 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IC-wG-fps">
+                            <rect key="frame" x="0.0" y="49" width="414" height="1"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="iUE-1b-Pdv"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -89,7 +96,10 @@
                         <constraint firstAttribute="trailing" secondItem="5iB-Jh-kTh" secondAttribute="trailing" constant="8" id="CsQ-ni-3OY"/>
                         <constraint firstItem="cxN-Q8-Lgd" firstAttribute="leading" secondItem="Dx0-Tt-oZs" secondAttribute="trailing" constant="8" id="INH-fO-tBz"/>
                         <constraint firstItem="5iB-Jh-kTh" firstAttribute="leading" secondItem="cxN-Q8-Lgd" secondAttribute="trailing" constant="8" id="InH-Sz-8gz"/>
+                        <constraint firstAttribute="trailing" secondItem="7IC-wG-fps" secondAttribute="trailing" id="NLC-jh-hkP"/>
+                        <constraint firstAttribute="bottom" secondItem="7IC-wG-fps" secondAttribute="bottom" id="ap5-Xm-m32"/>
                         <constraint firstItem="5iB-Jh-kTh" firstAttribute="top" secondItem="8ba-kc-jlJ" secondAttribute="top" constant="6" id="dqA-0U-VSM"/>
+                        <constraint firstItem="7IC-wG-fps" firstAttribute="leading" secondItem="8ba-kc-jlJ" secondAttribute="leading" id="kZW-ke-Alo"/>
                         <constraint firstItem="cxN-Q8-Lgd" firstAttribute="centerY" secondItem="8ba-kc-jlJ" secondAttribute="centerY" constant="2" id="lmi-EB-0zz"/>
                         <constraint firstItem="Dx0-Tt-oZs" firstAttribute="top" secondItem="8ba-kc-jlJ" secondAttribute="top" constant="8" id="phx-7N-5Ks"/>
                     </constraints>
