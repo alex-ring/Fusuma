@@ -37,6 +37,7 @@ public protocol FusumaDelegate: class {
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode)
     func fusumaVideoCompleted(withFileURL fileURL: URL)
     func fusumaCameraRollUnauthorized()
+    func fusumaCameraUnauthorized()
     
     // optional
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode, metaData: ImageMetadata)
@@ -552,7 +553,7 @@ private extension FusumaViewController {
             self.view.bringSubview(toFront: photoLibraryViewerContainer)
         
         case .camera:
-            
+            checkCameraPerm()
             doneButton.isHidden = true
             titleLabel.text = NSLocalizedString(fusumaCameraTitle, comment: fusumaCameraTitle)
             highlightButton(cameraButton)
@@ -560,7 +561,7 @@ private extension FusumaViewController {
             cameraView.startCamera()
             
         case .video:
-            
+            checkCameraPerm()
             doneButton.isHidden = true
             titleLabel.text = fusumaVideoTitle
             highlightButton(videoButton)
@@ -573,6 +574,15 @@ private extension FusumaViewController {
         }
         
         self.view.bringSubview(toFront: menuView)
+    }
+    
+    func checkCameraPerm() {
+        switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
+        case .denied, .restricted:
+            delegate?.fusumaCameraUnauthorized()
+        default:
+            break
+        }
     }
     
     func updateDoneButtonVisibility() {

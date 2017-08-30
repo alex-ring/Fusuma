@@ -13,8 +13,6 @@ import Photos
 
 @objc protocol FSCameraViewDelegate: class {
     func cameraShotFinished(_ image: UIImage)
-    @objc optional
-    func fusumaCameraUnauthorized()
 }
 
 final class FSCameraView: UIView, UIGestureRecognizerDelegate {
@@ -171,9 +169,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
             }
             
         case .denied, .restricted:
-            
-            delegate?.fusumaCameraUnauthorized?()
-            
+        
             stopCamera()
             
         default:

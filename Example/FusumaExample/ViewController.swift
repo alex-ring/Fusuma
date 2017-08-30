@@ -150,6 +150,10 @@ class ViewController: UIViewController, FusumaDelegate {
         presented.present(alert, animated: true, completion: nil)
     }
     
+    func fusumaCameraUnauthorized() {
+        
+    }
+
     func fusumaClosed() {
         
         print("Called when the FusumaViewController disappeared")
